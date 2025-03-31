@@ -6,6 +6,7 @@
       v-for="(item, index) in menu.data.value.data.menu_items"
       :key="index"
       class="flex flex-row items-center h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 relative"
+      @click="toggleMenu"
     >
       <NuxtLink
         :class="[
@@ -27,4 +28,6 @@ const route = useRoute();
 const menu = await useFetch(
   `${useRuntimeConfig().public.apiUrl}/items/header_menu`
 );
+
+const toggleMenu = inject("toggleMenuProvider");
 </script>

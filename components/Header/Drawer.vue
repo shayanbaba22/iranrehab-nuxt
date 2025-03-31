@@ -2,11 +2,14 @@
 import Logo from "@/public/logo.svg";
 import Close from "@/assets/icons/Close";
 import NavigationItems from "@/components/Header/NavigationItems.vue";
+
+const toggleMenu  = inject("toggleMenuProvider");
+
 </script>
 
 <template>
   <div
-    class="flex flex-col-reverse rounded-e-3xl shadow-xl fixed z-50 top-0 right-0 bg-white w-60 h-full justify-end p-4 transition-all duration-500 border border-[#eee] lg:hidden`"
+    class="flex flex-col-reverse rounded-e-3xl shadow-xl fixed z-50 top-0 right-0 bg-white w-60 h-full justify-end p-4 transition-all duration-500 border border-[#eee] lg:hidden"
   >
     <NuxtImage
       :src="Logo"

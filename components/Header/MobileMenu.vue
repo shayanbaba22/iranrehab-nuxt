@@ -3,9 +3,12 @@ import HamburgerMenu from "@/assets/icons/HamburgerMenu";
 import Drawer from "@/components/Header/Drawer.vue";
 
 const open= ref(false);
-const toggleMenu = () => {
+function toggleMenu() {
   open.value = !open.value;
 };
+
+provide('toggleMenuProvider', toggleMenu);
+
 </script>
 
 <template>
@@ -20,7 +23,6 @@ const toggleMenu = () => {
           class="w-full h-full bg-[#00000020] fixed top-0 left-0 z-10 lg:hidden"
         ></div>
       <Drawer
-        :toggleMenu="toggleMenu"
         :class="[open ? `translate-x-[0px]` : `translate-x-[120%]`]"
       />
 
