@@ -13,7 +13,7 @@
       >
         <Service1 class="[&_path]:fill-white" v-if="item.id === 1" />
         <Service2 class="[&_path]:fill-white" v-else-if="item.id === 2" />
-        <Service3 class="[&_path]:fill-white" v-else-if="item.id === 3" />
+        <Service3 class="[&_path]:stroke-white" v-else-if="item.id === 3" />
         <Service4 class="[&_path]:fill-white" v-else-if="item.id === 4" />
         <Service5 class="[&_path]:fill-white" v-else-if="item.id === 5" />
       </ServiceSingle>

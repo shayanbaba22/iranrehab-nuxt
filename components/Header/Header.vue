@@ -6,12 +6,9 @@ import NavigationItems from "@/components/Header/NavigationItems.vue";
 import Instagram from "@/assets/icons/Instagram.vue";
 import Telegram from "@/assets/icons/Telegram.vue";
 import Aparat from "@/assets/icons/Aparat.vue";
-const settings = await useAsyncData("settings", () =>
-  $fetch(`${useRuntimeConfig().public.apiUrl}/items/settings`)
-);
 
-const menu = await useFetch(
-  `${useRuntimeConfig().public.apiUrl}/items/header_menu`
+const settings = await useFetch(
+  `${useRuntimeConfig().public.apiUrl}/items/settings`
 );
 </script>
 
