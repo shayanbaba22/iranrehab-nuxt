@@ -1,5 +1,5 @@
 <template>
-  <Swiper
+ <Swiper
     :breakpoints="{
       640: {
         slidesPerView: 2,
@@ -27,7 +27,7 @@
       <BlogCard
         :img="post.image"
         :title="post.title"
-        :desc="post.content.slice(0, 150)"
+        :desc="post.content.slice(0 , 150)"
         :postDate="post.date_created"
         :slug="`/blog/${post.slug}`"
       />

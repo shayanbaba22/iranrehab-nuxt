@@ -35,9 +35,27 @@ useHead({
 </template>
 
 <style>
-html {
+@font-face {
   font-family: iransans;
-  scroll-behavior: smooth;
+  src: url(/fonts/IRANSansXFaNum-Regular.woff2) format("woff2");
+  font-weight: normal;
+}
+@font-face {
+  font-family: iransans;
+  src: url(/fonts/IRANSansXFaNum-Bold.woff2) format("woff2");
+  font-weight: bold;
+}
+
+* {
+  font-family: iransans;
+}
+
+.font-bold {
+  font-weight: 700 !important; /* Ensure bold weight is applied */
+}
+
+.font-normal {
+  font-weight: 400 !important; /* Ensure normal weight is applied */
 }
 
 .content h2,

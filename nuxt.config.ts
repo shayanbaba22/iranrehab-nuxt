@@ -17,18 +17,4 @@ export default defineNuxtConfig({
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
   },
-  fonts: {
-    families: [
-      {
-        name: "iransans",
-        src: "/fonts/IRANSansXFaNum-Regular.woff2",
-        weight: "normal",
-      },
-      {
-        name: "iransans",
-        src: "/fonts/IRANSansXFaNum-Bold.woff2",
-        weight: "bold",
-      },
-    ],
-  },
 });
