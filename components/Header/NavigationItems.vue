@@ -14,7 +14,7 @@
             ? `text-primary-1 lg:after:content-[''] lg:after:w-3 lg:after:h-[3px] after:bg-primary-1 after:rounded-full after:absolute after:left-0 after:right-0 after:mr-auto after:ml-auto after:bottom-[-20px]`
             : null,
         ]"
-        :href="item.item_url"
+        :to="item.item_url"
       >
         {{ item.item_label }}
       </NuxtLink>

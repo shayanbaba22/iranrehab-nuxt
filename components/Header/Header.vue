@@ -18,7 +18,7 @@ const settings = await useFetch(
       class="w-full xl:max-w-[1280px] flex flex-row justify-between bg-white border-4 border-primary-400 shadow-lg py-6 px-2 sm:px-6 rounded-2xl items-center z-40"
     >
       <MobileMenu />
-      <NuxtLink href="/">
+      <NuxtLink to="/">
         <NuxtImg
           :src="`${useRuntimeConfig().public.apiUrl}/assets/${
             settings.data.value.data.logo
@@ -41,15 +41,15 @@ const settings = await useFetch(
       </div>
       <div class="flex gap-4">
         <NuxtLink
-          :href="settings.data.value.data.instagram"
+          :to="settings.data.value.data.instagram"
           aria-label="اینستاگرام"
         >
           <Instagram />
         </NuxtLink>
-        <NuxtLink :href="settings.data.value.data.telegram" aria-label="تلگرام">
+        <NuxtLink :to="settings.data.value.data.telegram" aria-label="تلگرام">
           <Telegram />
         </NuxtLink>
-        <NuxtLink :href="settings.data.value.data.aparat" aria-label="آپارات">
+        <NuxtLink :to="settings.data.value.data.aparat" aria-label="آپارات">
           <Aparat />
         </NuxtLink>
       </div>

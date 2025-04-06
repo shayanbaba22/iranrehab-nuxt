@@ -1,5 +1,5 @@
 <template>
- <Swiper
+  <Swiper
     :breakpoints="{
       640: {
         slidesPerView: 2,
@@ -12,7 +12,7 @@
       },
     }"
     :slidesPerView="1"
-    :spaceBetween="0"
+    :spaceBetween="20"
     :pagination="{
       clickable: true,
     }"
@@ -25,10 +25,11 @@
   >
     <SwiperSlide v-for="post in posts.data.value.data" :key="post.id">
       <BlogCard
+        :key="post.id"
         :img="post.image"
         :title="post.title"
-        :desc="post.content.slice(0 , 150)"
-        :postDate="post.date_created"
+        :desc="post.contnet.slice(0, 300)"
+        :date="new Date(post.date_created).toLocaleDateString('fa-IR', options)"
         :slug="`/blog/${post.slug}`"
       />
     </SwiperSlide>
@@ -40,8 +41,11 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import BlogCard from "@/components/Cards/BlogCard.vue";
 
 const posts = await useFetch(
-  `${useRuntimeConfig().public.apiUrl}items/post?limit=8`
+  `${useRuntimeConfig().public.apiUrl}/items/post?limit=8`
 );
+
+let options = { year: "numeric", month: "long", day: "numeric" };
 </script>

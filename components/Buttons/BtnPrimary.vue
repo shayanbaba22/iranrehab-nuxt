@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    :href="url"
+    :to="url"
     class="flex flex-row items-center pr-5 w-[180px] h-[44px] bg-primary-1 rounded-full relative [&_div:nth-child(2)]:hover:border-r-0 overflow-hidden shadow-[0_6px_30px_10px_rgba(0,0,0,0.05)]"
   >
     <div class="text-white text-base">{{ text }}</div>

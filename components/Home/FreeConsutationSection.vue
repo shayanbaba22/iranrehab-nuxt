@@ -16,7 +16,7 @@
         </p>
         <div class="flex flex-col items-center lg:flex-row">
           <NuxtLink
-            href="tel:02166430489"
+            to="tel:02166430489"
             class="flex flex-col items-center text-white border-[1px] justify-center w-[180px] h-[44px] bg-transparent rounded-lg"
           >
             مشاوره رایگان

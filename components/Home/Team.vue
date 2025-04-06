@@ -1,5 +1,5 @@
 <template>
-<section class="flex flex-row items-center justify-center p-2 mt-[60px] bg-[url('/GaitPlateBg.svg')] bg-cover bg-center bg-no-repeat">
+<section class="flex flex-row items-center justify-center p-2 mt-[60px] bg-[url('/GaitPlateBg.svg')] bg-cover bg-center bg-no-repeat relative">
       <div class="w-full xl:max-w-[1280px] flex flex-col justify-between p-6 z-50">
         <div class="flex flex-row w-full justify-between items-center">
           <div>
