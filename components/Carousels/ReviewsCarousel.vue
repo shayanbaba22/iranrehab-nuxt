@@ -29,7 +29,7 @@
         :name="review.name"
         :position="review.position"
         :review="review.review"
-        class="flex justify-center items-center mb-10"
+        class="flex justify-center items-center mb-14"
       />
     </SwiperSlide>
   </Swiper>

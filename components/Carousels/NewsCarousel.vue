@@ -21,9 +21,13 @@
       pauseOnMouseEnter: true,
     }"
     :modules="[Pagination, Autoplay]"
-    className="flex flex-row w-full h-full mt-6 [&_*]:transition-all delay-150"
+    class="flex flex-row w-full h-full mt-6 [&_*]:transition-all delay-150"
   >
-    <SwiperSlide v-for="post in posts.data.value.data" :key="post.id">
+    <SwiperSlide
+      v-for="post in posts.data"
+      :key="post.id"
+      v-if="status == 'success'"
+    >
       <BlogCard
         :key="post.id"
         :img="post.image"
@@ -31,8 +35,11 @@
         :desc="post.contnet.slice(0, 300)"
         :date="new Date(post.date_created).toLocaleDateString('fa-IR', options)"
         :slug="`/blog/${post.slug}`"
+        class="flex justify-center items-center mb-14"
       />
     </SwiperSlide>
+    <p v-else-if="status == 'pending'">Loading...</p>
+    <p v-else="status == 'error'">error</p>
   </Swiper>
 </template>
 
@@ -43,8 +50,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import BlogCard from "@/components/Cards/BlogCard.vue";
 
-const posts = await useFetch(
-  `${useRuntimeConfig().public.apiUrl}/items/post?limit=8`
+const { data: posts, status } = await useFetch(
+  () => `${useRuntimeConfig().public.apiUrl}/items/post?limit=8`,
+  {
+    lazy: true,
+  }
 );
 
 let options = { year: "numeric", month: "long", day: "numeric" };

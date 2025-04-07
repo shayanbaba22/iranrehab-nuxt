@@ -1,5 +1,5 @@
 <template>
-  <section class="flex flex-col items-center w-full mt-[60px] z-50 p-2">
+  <section class="flex flex-col items-center w-full mt-[60px] z-50 p-2 relative">
     <div
       class="w-full xl:max-w-[1280px] flex flex-col justify-centers items-center rounded-3xl p-6 z-50"
     >
