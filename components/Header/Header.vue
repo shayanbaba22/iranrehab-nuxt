@@ -7,9 +7,7 @@ import Instagram from "@/assets/icons/Instagram.vue";
 import Telegram from "@/assets/icons/Telegram.vue";
 import Aparat from "@/assets/icons/Aparat.vue";
 
-const settings = await useFetch(
-  `${useRuntimeConfig().public.apiUrl}/items/settings`
-);
+const { data: settings } = await useFetch(`/api/settings`);
 </script>
 
 <template>
@@ -21,9 +19,9 @@ const settings = await useFetch(
       <NuxtLink to="/">
         <NuxtImg
           :src="`${useRuntimeConfig().public.apiUrl}/assets/${
-            settings.data.value.data.logo
+            settings.data.logo
           }?quality=100`"
-          :alt="settings.data.value.data.site_name"
+          :alt="settings.data.site_name"
           class="order-2 lg:order-1 w-[100px] sm:w-[130px]"
         />
       </NuxtLink>
@@ -40,16 +38,13 @@ const settings = await useFetch(
         پایگاه اطلاع رسانی مرکز جامع توانبخشی ایران
       </div>
       <div class="flex gap-4">
-        <NuxtLink
-          :to="settings.data.value.data.instagram"
-          aria-label="اینستاگرام"
-        >
+        <NuxtLink :to="settings.data.instagram" aria-label="اینستاگرام">
           <Instagram />
         </NuxtLink>
-        <NuxtLink :to="settings.data.value.data.telegram" aria-label="تلگرام">
+        <NuxtLink :to="settings.data.telegram" aria-label="تلگرام">
           <Telegram />
         </NuxtLink>
-        <NuxtLink :to="settings.data.value.data.aparat" aria-label="آپارات">
+        <NuxtLink :to="settings.data.aparat" aria-label="آپارات">
           <Aparat />
         </NuxtLink>
       </div>

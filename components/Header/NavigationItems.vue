@@ -3,7 +3,7 @@
     class="lg:order-2 lg:flex-row lg:items-center lg:justify-start lg:p-2.5 flex-col text-base gap-8 lg:gap-5 xl:gap-9 text-textsc hover:[&_li_a]:text-primary-1 [&_li_a]:transition-all [&_li_a]:delay-100 mr-4"
   >
     <li
-      v-for="(item, index) in menu.data.value.data.menu_items"
+      v-for="(item, index) in menu.data"
       :key="index"
       class="flex flex-row items-center h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 relative"
       @click="toggleMenu"
@@ -25,9 +25,7 @@
 <script setup>
 const route = useRoute();
 
-const menu = await useFetch(
-  `${useRuntimeConfig().public.apiUrl}/items/header_menu`
-);
+const { data: menu } = await useFetch(`/api/menu`);
 
 const toggleMenu = inject("toggleMenuProvider");
 </script>

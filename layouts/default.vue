@@ -1,33 +1,30 @@
+<template>
+  <NuxtLoadingIndicator color="#00aff0" size="10px" duration="4000" />
+  <Header />
+  <slot />
+  <Footer />
+</template>
+
 <script setup>
-const settings = await useAsyncData("settings", () =>
-  $fetch(`${useRuntimeConfig().public.apiUrl}/items/settings`)
-);
+const { data: settings } = await useFetch("/api/settings");
 useHead({
-  title: settings.data.value.data.site_name,
+  title: settings.data.site_name,
   htmlAttrs: {
     lang: "fa",
     dir: "rtl",
   },
-  meta: [
-    { name: "description", content: settings.data.value.data.site_description },
-  ],
+  meta: [{ name: "description", content: settings.data.site_description }],
   link: [
     {
       rel: "icon",
       type: "image/png",
       href: `${useRuntimeConfig().public.apiUrl}/assets/${
-        settings.data.value.data.favicon
+        settings.data.favicon
       }`,
     },
   ],
 });
 </script>
-
-<template>
-  <NuxtLoadingIndicator color="#00aff0" size="10px" duration="4000" />
-  <Header />
-  <slot />
-</template>
 
 <style>
 @font-face {
