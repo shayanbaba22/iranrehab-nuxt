@@ -7,7 +7,17 @@ import Instagram from "@/assets/icons/Instagram.vue";
 import Telegram from "@/assets/icons/Telegram.vue";
 import Aparat from "@/assets/icons/Aparat.vue";
 
-const { data: settings } = await useFetch(`/api/settings`);
+const { data: settings } = await useFetch(`/api/settings`, {
+  transform: ({ data }) => {
+    return {
+      logo: data.logo,
+      site_name: data.site_name,
+      instagram: data.instagram,
+      telegram: data.telegram,
+      aparat: data.aparat,
+    };
+  },
+});
 </script>
 
 <template>
@@ -19,9 +29,9 @@ const { data: settings } = await useFetch(`/api/settings`);
       <NuxtLink to="/">
         <NuxtImg
           :src="`${useRuntimeConfig().public.apiUrl}/assets/${
-            settings.data.logo
+            settings.logo
           }?quality=100`"
-          :alt="settings.data.site_name"
+          :alt="settings.site_name"
           class="order-2 lg:order-1 w-[100px] sm:w-[130px]"
         />
       </NuxtLink>
@@ -38,13 +48,13 @@ const { data: settings } = await useFetch(`/api/settings`);
         پایگاه اطلاع رسانی مرکز جامع توانبخشی ایران
       </div>
       <div class="flex gap-4">
-        <NuxtLink :to="settings.data.instagram" aria-label="اینستاگرام">
+        <NuxtLink :to="settings.instagram" aria-label="اینستاگرام">
           <Instagram />
         </NuxtLink>
-        <NuxtLink :to="settings.data.telegram" aria-label="تلگرام">
+        <NuxtLink :to="settings.telegram" aria-label="تلگرام">
           <Telegram />
         </NuxtLink>
-        <NuxtLink :to="settings.data.aparat" aria-label="آپارات">
+        <NuxtLink :to="settings.aparat" aria-label="آپارات">
           <Aparat />
         </NuxtLink>
       </div>

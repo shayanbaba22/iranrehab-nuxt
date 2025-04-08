@@ -6,20 +6,29 @@
 </template>
 
 <script setup>
-const { data: settings } = await useFetch("/api/settings");
+const { data: settings } = await useFetch("/api/settings", {
+  transform: ({ data }) => {
+    return {
+      site_name: data.site_name,
+      site_description: data.site_description,
+      favicon: data.favicon,
+    };
+  },
+});
+
 useHead({
-  title: settings.data.site_name,
+  title: settings.value.site_name,
   htmlAttrs: {
     lang: "fa",
     dir: "rtl",
   },
-  meta: [{ name: "description", content: settings.data.site_description }],
+  meta: [{ name: "description", content: settings.value.site_description }],
   link: [
     {
       rel: "icon",
       type: "image/png",
       href: `${useRuntimeConfig().public.apiUrl}/assets/${
-        settings.data.favicon
+        settings.value.favicon
       }`,
     },
   ],

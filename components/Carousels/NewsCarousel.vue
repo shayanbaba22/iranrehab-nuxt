@@ -54,5 +54,7 @@ const { data: posts, status } = await useFetch(`/api/post?limit=6`, {
   lazy: true,
 });
 
+console.log(posts.value);
+
 let options = { year: "numeric", month: "long", day: "numeric" };
 </script>
