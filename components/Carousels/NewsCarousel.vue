@@ -38,8 +38,7 @@
         class="flex justify-center items-center mb-14"
       />
     </SwiperSlide>
-    <p v-else-if="status == 'pending'">Loading...</p>
-    <p v-else="status == 'error'">error</p>
+    <Loading v-else-if="status == 'pending'" />
   </Swiper>
 </template>
 
@@ -49,13 +48,11 @@ import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import BlogCard from "@/components/Cards/BlogCard.vue";
+import Loading from "@/components/Loading.vue";
 
-const { data: posts, status } = await useFetch(
-  () => `${useRuntimeConfig().public.apiUrl}/items/post?limit=8`,
-  {
-    lazy: true,
-  }
-);
+const { data: posts, status } = await useFetch(`/api/post?limit=6`, {
+  lazy: true,
+});
 
 let options = { year: "numeric", month: "long", day: "numeric" };
 </script>

@@ -8,13 +8,4 @@ export default defineNuxtConfig({
       apiUrl: process.env.API_URL,
     },
   },
-  app: {
-    head: {
-      title: "Nuxt", // default fallback title
-      htmlAttrs: {
-        lang: "en",
-      },
-      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
-    },
-  },
 });

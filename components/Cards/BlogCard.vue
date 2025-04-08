@@ -33,7 +33,7 @@
         >
           <div class="text-primary-1 text-base">مشاهده بیشتر</div>
           <div class="transition-all duration-500 h-[44px]">
-            <ArrowLeftBtn class="translate-y-0 translate-x-[6px]" />
+            <ArrowLeftBtn class="translate-y-[10px] translate-x-[-6px]" />
           </div>
         </NuxtLink>
       </div>
