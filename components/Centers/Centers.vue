@@ -17,7 +17,7 @@
           :city="city"
         />
 
-        <Pagination :dataCount="centersCount" />
+        <Pagination urlName="centers" :dataCount="centersCount" />
       </div>
       <Loading v-else="status == 'pending'" />
 
@@ -46,14 +46,35 @@ import Pagination from "@/components/Pagination.vue";
 import Search from "@/components/Header/Search.vue";
 import SelectFilter from "@/components/Centers/SelectFilter.vue";
 import ResetFilters from "@/components/Centers/ResetFilters.vue";
-import queryString from "query-string";
 
-const params = useRoute().query;
-const stringified = queryString.stringify(params);
-const { data: centers, status } = await useFetch(`/api/center?${stringified}`, {
+const params = useRoute();
+console.log(params);
+params.query.limit = 4;
+const {
+  data: centers,
+  status,
+  refresh,
+} = await useFetch(`/api/center`, {
   lazy: true,
+  query: params.query,
 });
 
+watch(
+  () => params.query, // Watch the reactive query object
+  () => {
+    refresh(); // Refresh the data when the query changes
+  }
+);
+
+const { data: centersCount } = await useFetch(
+  `/api/center?aggregate[count]=*`,
+  {
+    lazy: true,
+    transform: ({ data }) => {
+      return { count: data[0].count };
+    },
+  }
+);
 
 const { data: city } = await useFetch(`/api/city`, {
   lazy: true,
