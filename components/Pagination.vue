@@ -2,29 +2,33 @@
   <nav
     aria-label="Page navigation"
     class="flex w-full justify-center mt-5"
-    :class="[totalPages <= 1 ? 'hidden' : '']"
+    :class="[props.totalPages <= 1 ? 'hidden' : '']"
   >
     <ul class="inline-flex gap-3 text-sm">
       <li
         class="flex items-center justify-center w-[60px] h-[30px] leading-tight text-white bg-primary-1 rounded-lg hover:bg-primary-800 ease-in transition-all cursor-pointer"
-        :class="[page === 1 ? 'hidden' : '']"
-        @click="handlePage(page - 1)"
+        :class="[props.currentPage === 1 ? 'hidden' : '']"
+        @click="handlePage(props.currentPage - 1)"
       >
         قبلی
       </li>
       <PagenationItem
-        v-for="i in pages"
+        v-for="i in props.pages"
         :key="i"
         :page="i"
-        :isActive="i === page"
-        @click="handlePage(i)"
+        :isActive="i === props.currentPage"
+        @click="props.handlePage(i)"
       >
         {{ i }}
       </PagenationItem>
       <li
         class="flex items-center justify-center w-[60px] h-[30px] leading-tight text-white bg-primary-1 rounded-lg hover:bg-primary-800 ease-in transition-all cursor-pointer"
-        :class="[page === totalPages ? 'hidden' : '']"
-        @click="() => page < totalPages && handlePage(page + 1)"
+        :class="[props.currentPage === props.totalPages ? 'hidden' : '']"
+        @click="
+          () =>
+            props.currentPage < props.totalPages &&
+            props.handlePage(props.currentPage + 1)
+        "
       >
         بعدی
       </li>
@@ -36,36 +40,21 @@
 import PagenationItem from "@/components/PaginationItem.vue";
 
 const props = defineProps({
-  urlName: {
-    type: String,
+  pages: {
+    type: Array,
     required: true,
   },
-  dataCount: {
-    type: Object,
+  totalPages: {
+    type: Number,
+    required: true,
+  },
+  currentPage: {
+    type: Number,
+    required: true,
+  },
+  handlePage: {
+    type: Function,
     required: true,
   },
 });
-
-const router = useRouter();
-const route = useRoute().query;
-console.log(route);
-const totalPages = Math.ceil(props.dataCount.count / route.limit);
-const page = ref(1);
-const pages = computed(() => {
-  const startPage = Math.max(1, page.value - 1);
-  const endPage = Math.min(page.value + 1, totalPages);
-  return Array.from(
-    { length: endPage - startPage + 1 },
-    (_, i) => startPage + i
-  );
-});
-
-const handlePage = (p) => {
-  page.value = p;
-
-  router.push({
-    path: props.urlName,
-    query: { ...route.query, page: p },
-  });
-};
 </script>

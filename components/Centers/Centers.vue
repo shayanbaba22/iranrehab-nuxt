@@ -17,7 +17,12 @@
           :city="city"
         />
 
-        <Pagination urlName="centers" :dataCount="centersCount" />
+        <Pagination
+          :pages="pages"
+          :totalPages="totalPages"
+          :currentPage="currentPage"
+          :handlePage="handlePage"
+        />
       </div>
       <Loading v-else="status == 'pending'" />
 
@@ -48,8 +53,10 @@ import SelectFilter from "@/components/Centers/SelectFilter.vue";
 import ResetFilters from "@/components/Centers/ResetFilters.vue";
 
 const params = useRoute();
-console.log(params);
+const router = useRouter();
 params.query.limit = 4;
+const currentPage = ref(1);
+
 const {
   data: centers,
   status,
@@ -58,13 +65,6 @@ const {
   lazy: true,
   query: params.query,
 });
-
-watch(
-  () => params.query, // Watch the reactive query object
-  () => {
-    refresh(); // Refresh the data when the query changes
-  }
-);
 
 const { data: centersCount } = await useFetch(
   `/api/center?aggregate[count]=*`,
@@ -82,4 +82,26 @@ const { data: city } = await useFetch(`/api/city`, {
     return data.map(({ id, city }) => ({ id, city }));
   },
 });
+
+const totalPages = Math.ceil(centersCount.value.count / params.query.limit);
+const pages = computed(() => {
+  const startPage = Math.max(1, currentPage.value - 1);
+  const endPage = Math.min(currentPage.value + 1, totalPages);
+  return Array.from(
+    { length: endPage - startPage + 1 },
+    (_, i) => startPage + i
+  );
+});
+
+const handlePage = (p) => {
+  currentPage.value = p;
+  params.query.page = currentPage.value;
+  refresh();
+  setTimeout(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, 700);
+};
 </script>

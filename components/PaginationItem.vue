@@ -3,7 +3,7 @@
     class="flex items-center justify-center w-[30px] h-[30px] leading-tight text-white rounded-lg bg-primary-1 hover:bg-primary-800 ease-in transition-all cursor-pointer"
     :class="{
       'bg-primary-1 text-white': isActive,
-      'opacity-50 cursor-not-allowed': isActive,
+      'opacity-50': isActive,
     }"
   >
     {{ page }}
@@ -21,10 +21,4 @@ const props = defineProps({
     default: false,
   },
 });
-
-// const emit = defineEmits(["click"]);
-
-// const handleClick = () => {
-//   emit("click", page);
-// };
 </script>
