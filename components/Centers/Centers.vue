@@ -18,7 +18,7 @@
         />
 
         <Pagination
-          v-if="centersCount.count > limit || currentPage > 1"
+          v-if="centersCount.count > limit"
           :pages="pages"
           :totalPages="totalPages"
           :currentPage="currentPage"
@@ -67,11 +67,20 @@ const searchQuery = ref("");
 
 const { data: centers, status } = await useFetch(`/api/center`, {
   lazy: true,
-  query: {
-    search: searchQuery,
-    limit: limit,
-    page: currentPage,
-  },
+  query: computed(() => {
+    const query = {};
+    if (searchQuery.value) {
+      query.limit = limit.value;
+      query.page = currentPage.value;
+      query.search = searchQuery.value;
+      return query;
+    } else {
+      return {
+        page: currentPage.value,
+        limit: limit.value,
+      };
+    }
+  }),
   watch: [limit, currentPage, searchQuery],
 });
 
@@ -82,7 +91,6 @@ const { data: centersCount } = await useFetch(
     query: {
       search: searchQuery,
       limit: limit,
-      page: currentPage,
     },
     watch: [limit, currentPage, searchQuery],
     transform: ({ data }) => {
