@@ -18,6 +18,7 @@
         />
 
         <Pagination
+          v-if="centersCount.count > limit || currentPage > 1"
           :pages="pages"
           :totalPages="totalPages"
           :currentPage="currentPage"
@@ -36,7 +37,14 @@
       <div
         class="flex flex-col w-full lg:w-[calc(25%-10px)] border-2 border-dashed border-[#eeeeee] rounded-3xl gap-5 p-4"
       >
-        <Search :centers="centers.data" />
+        <Search
+          @update:searchQuery="
+            (value) => {
+              searchQuery = value;
+              currentPage = 1;
+            }
+          "
+        />
         <SelectFilter :city="city" />
         <ResetFilters />
       </div>
@@ -53,23 +61,30 @@ import SelectFilter from "@/components/Centers/SelectFilter.vue";
 import ResetFilters from "@/components/Centers/ResetFilters.vue";
 
 const params = useRoute();
-const router = useRouter();
-params.query.limit = 4;
+const limit = ref(4);
 const currentPage = ref(1);
+const searchQuery = ref("");
 
-const {
-  data: centers,
-  status,
-  refresh,
-} = await useFetch(`/api/center`, {
+const { data: centers, status } = await useFetch(`/api/center`, {
   lazy: true,
-  query: params.query,
+  query: {
+    search: searchQuery,
+    limit: limit,
+    page: currentPage,
+  },
+  watch: [limit, currentPage, searchQuery],
 });
 
 const { data: centersCount } = await useFetch(
   `/api/center?aggregate[count]=*`,
   {
     lazy: true,
+    query: {
+      search: searchQuery,
+      limit: limit,
+      page: currentPage,
+    },
+    watch: [limit, currentPage, searchQuery],
     transform: ({ data }) => {
       return { count: data[0].count };
     },
@@ -83,10 +98,15 @@ const { data: city } = await useFetch(`/api/city`, {
   },
 });
 
-const totalPages = Math.ceil(centersCount.value.count / params.query.limit);
+const totalPages = computed(() => {
+  if (!centersCount.value || !centersCount.value.count) return 0;
+  return Math.ceil(centersCount.value.count / limit.value);
+});
+
 const pages = computed(() => {
+  if (totalPages.value === 0) return [];
   const startPage = Math.max(1, currentPage.value - 1);
-  const endPage = Math.min(currentPage.value + 1, totalPages);
+  const endPage = Math.min(currentPage.value + 1, totalPages.value);
   return Array.from(
     { length: endPage - startPage + 1 },
     (_, i) => startPage + i
@@ -95,8 +115,7 @@ const pages = computed(() => {
 
 const handlePage = (p) => {
   currentPage.value = p;
-  params.query.page = currentPage.value;
-  refresh();
+
   setTimeout(() => {
     window.scrollTo({
       top: 0,

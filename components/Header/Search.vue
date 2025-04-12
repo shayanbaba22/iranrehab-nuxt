@@ -25,16 +25,13 @@
 
 <script setup>
 import SearchIcon from "@/assets/icons/SearchIcon.vue";
-const router = useRouter(); 
-const route = useRoute(); 
+
+const params = useRoute();
 const query = ref("");
-const searchParams = ref({ ...route.query }); 
+
+const emit = defineEmits(["update:searchQuery"]);
 
 const handleSearch = () => {
-  searchParams.value.search = query.value;
-  if (query.value === "") {
-    delete searchParams.value.search;
-  }
-  router.push({ path: "/centers", query: searchParams.value }); 
+  emit("update:searchQuery", query.value);
 };
 </script>
