@@ -17,6 +17,13 @@
           :city="city"
         />
 
+        <p
+          class="flex flex-col w-full lg:w-full gap-5 text-lg text-primary-1 justify-center items-center content-center mt-10"
+          v-if="centers.data.length === 0"
+        >
+          موردی پیدا نشد
+        </p>
+
         <Pagination
           v-if="centersCount.count > limit"
           :pages="pages"
@@ -25,14 +32,10 @@
           :handlePage="handlePage"
         />
       </div>
-      <Loading v-else="status == 'pending'" />
-
-      <p
-        class="flex flex-col w-full lg:w-[calc(75%-10px)] gap-5 text-lg text-primary-1 justify-center items-center content-center mt-10"
-        v-if="centers.data.length === 0"
-      >
-        موردی پیدا نشد
-      </p>
+      <Loading
+        v-else="status == 'pending'"
+        class="w-full lg:w-[calc(75%-10px)]"
+      />
 
       <div
         class="flex flex-col w-full lg:w-[calc(25%-10px)] border-2 border-dashed border-[#eeeeee] rounded-3xl gap-5 p-4"
@@ -45,7 +48,7 @@
             }
           "
         />
-        <SelectFilter :city="city" />
+        <SelectFilter />
         <ResetFilters />
       </div>
     </div>
@@ -56,7 +59,7 @@
 import CenterCard from "@/components/Centers/CenterCard.vue";
 import Loading from "@/components/Loading.vue";
 import Pagination from "@/components/Pagination.vue";
-import Search from "@/components/Header/Search.vue";
+import Search from "~/components/Centers/Search.vue";
 import SelectFilter from "@/components/Centers/SelectFilter.vue";
 import ResetFilters from "@/components/Centers/ResetFilters.vue";
 
@@ -64,6 +67,9 @@ const params = useRoute();
 const limit = ref(4);
 const currentPage = ref(1);
 const searchQuery = ref("");
+const cityFilter = ref(2238);
+
+provide("cityFilter", cityFilter);
 
 const { data: centers, status } = await useFetch(`/api/center`, {
   lazy: true,
@@ -73,15 +79,21 @@ const { data: centers, status } = await useFetch(`/api/center`, {
       query.limit = limit.value;
       query.page = currentPage.value;
       query.search = searchQuery.value;
+      if (cityFilter.value !== 2238) {
+        query.filter = `{ "selected_city" : { "_eq": "${cityFilter.value}" } }`;
+      }
       return query;
     } else {
-      return {
-        page: currentPage.value,
-        limit: limit.value,
-      };
+      query.page = currentPage.value;
+      query.limit = limit.value;
+      if (cityFilter.value !== 2238) {
+        query.filter = `{ "selected_city" : { "_eq": "${cityFilter.value}" } }`;
+      } 
+      console.log(query);
+      return query;
     }
   }),
-  watch: [limit, currentPage, searchQuery],
+  watch: [limit, currentPage, searchQuery, cityFilter],
 });
 
 const { data: centersCount } = await useFetch(
@@ -91,8 +103,9 @@ const { data: centersCount } = await useFetch(
     query: {
       search: searchQuery,
       limit: limit,
+      // filter: `{ "selected_city" : { "_eq": ${cityFilter} } }`,
     },
-    watch: [limit, currentPage, searchQuery],
+    watch: [limit, currentPage, searchQuery, cityFilter],
     transform: ({ data }) => {
       return { count: data[0].count };
     },
@@ -105,6 +118,8 @@ const { data: city } = await useFetch(`/api/city`, {
     return data.map(({ id, city }) => ({ id, city }));
   },
 });
+
+provide("city", city);
 
 const totalPages = computed(() => {
   if (!centersCount.value || !centersCount.value.count) return 0;

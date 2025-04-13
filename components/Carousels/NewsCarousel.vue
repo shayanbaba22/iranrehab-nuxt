@@ -38,7 +38,7 @@
         class="flex justify-center items-center mb-14"
       />
     </SwiperSlide>
-    <Loading v-else-if="status == 'pending'" />
+    <Loading v-else-if="status == 'pending'" class="w-full" />
   </Swiper>
 </template>
 

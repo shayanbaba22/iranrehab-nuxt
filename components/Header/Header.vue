@@ -1,6 +1,5 @@
 <script setup>
 import Notice from "@/assets/icons/Notice";
-import Search from "@/components/Header/Search.vue";
 import MobileMenu from "@/components/Header/MobileMenu.vue";
 import NavigationItems from "@/components/Header/NavigationItems.vue";
 import Instagram from "@/assets/icons/Instagram.vue";
@@ -36,7 +35,6 @@ const { data: settings } = await useFetch(`/api/settings`, {
         />
       </NuxtLink>
       <NavigationItems class="hidden lg:grow lg:flex" />
-      <Search />
     </div>
     <div
       class="flex flex-row content-center justify-between items-center w-full xl:max-w-[1280px] p-3.5 z-30"

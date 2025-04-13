@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid min-h-[140px] w-full place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible"
+    class="grid min-h-[140px] place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible"
   >
     <div class="flex gap-8">
       <svg
