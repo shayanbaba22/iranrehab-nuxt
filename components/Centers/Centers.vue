@@ -61,7 +61,7 @@
 </template>
 
 <script setup>
-import CenterCard from "@/components/Centers/CenterCard.vue";
+import CenterCard from "@/components/Cards/CenterCard.vue";
 import Loading from "@/components/Loading.vue";
 import Pagination from "@/components/Pagination.vue";
 import Search from "~/components/Centers/Search.vue";
@@ -71,12 +71,21 @@ import ResetFilters from "@/components/Buttons/ResetFilters.vue";
 const limit = ref(4);
 const currentPage = ref(1);
 const searchQuery = ref("");
-const cityFilter = ref();
-const resetFilters = ref(false);
+const cityFilter = ref("");
+const citySearchInput = ref("");
+const containOrEqual = ref(false);
+const cityFilterQuery = computed(() => {
+  if (containOrEqual) {
+    return `{ "city" : { "_contains": "${citySearchInput.value}" } }`;
+  } else {
+    return `{ "city" : { "_eq": "" } }`;
+  }
+});
 
 const handleReset = () => {
   searchQuery.value = "";
   cityFilter.value = "";
+  containOrEqual.value = false;
 };
 
 provide("cityFilter", cityFilter);
@@ -125,13 +134,24 @@ const { data: centersCount } = await useFetch(
   }
 );
 
-const { data: city } = await useFetch(`/api/city`, {
+const { data: city, status: cityStatus } = await useFetch(`/api/city`, {
   lazy: true,
+  query: computed(() => {
+    const query = {};
+    if (citySearchInput.value !== "") {
+      query.filter = cityFilterQuery.value;
+      console.log(query);
+      return query;
+    }
+  }),
   transform: ({ data }) => {
     return data.map(({ id, city }) => ({ id, city }));
   },
+  watch: [cityFilterQuery],
 });
 
+provide("citySearchInput", citySearchInput);
+provide("cityStatus", cityStatus);
 provide("city", city);
 
 const totalPages = computed(() => {

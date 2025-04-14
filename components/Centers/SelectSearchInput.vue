@@ -12,8 +12,9 @@
 </template>
 
 <script setup>
-const emit = defineEmits(["update:searchInput"]);
+const citySearchInput = inject("citySearchInput", ref(""));
+
 const handleSearch = (e) => {
-  emit("update:searchInput", e.target.value);
+  citySearchInput.value = e.target.value;
 };
 </script>

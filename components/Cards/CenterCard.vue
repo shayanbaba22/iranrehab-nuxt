@@ -9,7 +9,7 @@
         >
           {{ center.title }}
         </h2>
-        <CenterDetails title="شهر" :subTitle="selectedCity.city" />
+        <CenterDetails title="شهر" :subTitle="selectedCity.city || 'نامشخص'" />
         <CenterDetails title="نام مدیر" :subTitle="center.manager_name" />
         <CenterDetails title="عنوان مجوز" :subTitle="center.lisence" />
       </div>
@@ -34,7 +34,7 @@ const props = defineProps({
     required: true,
   },
   city: {
-    type: Object,
+    type: Array,
     required: true,
   },
 });
