@@ -5,7 +5,7 @@
       v-if="open"
     >
       <SelectSearchInput
-        @update:searchQuery="
+        @update:searchInput="
           (value) => {
             searchInput = value;
           }
@@ -13,7 +13,7 @@
       />
       <ul>
         <li
-          v-for="c in city"
+          v-for="c in filteredCities._value"
           :key="c.id"
           :id="c.id"
           :value="c.city"
@@ -33,10 +33,17 @@ const city = inject("city", []);
 const cityFilter = inject("cityFilter");
 const searchInput = ref("");
 
+const filteredCities = computed(() => {
+  if (searchInput.value === "") {
+    return city;
+  } else {
+    return city.filter((c) => c.city.includes(searchInput.value));
+  }
+});
+
 const props = defineProps({
   open: {
     type: Boolean,
-    default: false,
   },
 });
 
@@ -44,7 +51,6 @@ const emit = defineEmits(["update:cityName"]);
 
 const handleSelect = (value) => {
   cityFilter.value = value.target.id;
-
   emit("update:cityName", value.target._value);
 };
 </script>

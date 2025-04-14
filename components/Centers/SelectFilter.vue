@@ -1,9 +1,15 @@
 <template>
-  <div
-    class="w-full p-4 bg-[#f7f7f7] order-4 rounded-2xl relative text-sm border-[1px] border-[#e8e8e8] selectToggle cursor-pointer"
-    @click="toggleSelect"
-  >
-    {{ cityName }}
+  <div class="relative order-4">
+    <div
+      class="w-full p-4 bg-[#f7f7f7] rounded-2xl text-sm border-[1px] border-[#e8e8e8] cursor-pointer"
+      @click="toggleSelect"
+    >
+      {{ cityName }}
+      <CarouselArrows
+        class="absolute left-3 top-[18px] w-4 h-4 transition-all duration-500"
+        :class="[open ? '-rotate-90' : 'rotate-90']"
+      />
+    </div>
     <SelectDropdown
       :open="open"
       @update:cityName="
@@ -11,10 +17,6 @@
           cityName = value;
         }
       "
-    />
-    <CarouselArrows
-      class="absolute left-3 top-[18px] w-4 h-4 transition-all duration-500"
-      :class="[open ? '-rotate-90' : 'rotate-90']"
     />
   </div>
 </template>

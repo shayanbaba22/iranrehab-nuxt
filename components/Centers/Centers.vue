@@ -49,7 +49,12 @@
           "
         />
         <SelectFilter />
-        <ResetFilters />
+        <Transition name="bounce">
+          <ResetFilters
+            v-if="searchQuery !== '' || cityFilter"
+            @click="handleReset"
+          />
+        </Transition>
       </div>
     </div>
   </section>
@@ -61,13 +66,18 @@ import Loading from "@/components/Loading.vue";
 import Pagination from "@/components/Pagination.vue";
 import Search from "~/components/Centers/Search.vue";
 import SelectFilter from "@/components/Centers/SelectFilter.vue";
-import ResetFilters from "@/components/Centers/ResetFilters.vue";
+import ResetFilters from "@/components/Buttons/ResetFilters.vue";
 
-const params = useRoute();
 const limit = ref(4);
 const currentPage = ref(1);
 const searchQuery = ref("");
-const cityFilter = ref(2238);
+const cityFilter = ref();
+const resetFilters = ref(false);
+
+const handleReset = () => {
+  searchQuery.value = "";
+  cityFilter.value = "";
+};
 
 provide("cityFilter", cityFilter);
 
@@ -79,17 +89,16 @@ const { data: centers, status } = await useFetch(`/api/center`, {
       query.limit = limit.value;
       query.page = currentPage.value;
       query.search = searchQuery.value;
-      if (cityFilter.value !== 2238) {
+      if (cityFilter.value) {
         query.filter = `{ "selected_city" : { "_eq": "${cityFilter.value}" } }`;
       }
       return query;
     } else {
       query.page = currentPage.value;
       query.limit = limit.value;
-      if (cityFilter.value !== 2238) {
+      if (cityFilter.value) {
         query.filter = `{ "selected_city" : { "_eq": "${cityFilter.value}" } }`;
-      } 
-      console.log(query);
+      }
       return query;
     }
   }),
@@ -100,11 +109,15 @@ const { data: centersCount } = await useFetch(
   `/api/center?aggregate[count]=*`,
   {
     lazy: true,
-    query: {
-      search: searchQuery,
-      limit: limit,
-      // filter: `{ "selected_city" : { "_eq": ${cityFilter} } }`,
-    },
+    query: computed(() => {
+      const query = {};
+      query.search = searchQuery.value;
+      query.limit = limit.value;
+      if (cityFilter.value) {
+        query.filter = `{ "selected_city" : { "_eq": "${cityFilter.value}" } }`;
+      }
+      return query;
+    }),
     watch: [limit, currentPage, searchQuery, cityFilter],
     transform: ({ data }) => {
       return { count: data[0].count };
@@ -147,3 +160,23 @@ const handlePage = (p) => {
   }, 700);
 };
 </script>
+
+<style scoped>
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+</style>
