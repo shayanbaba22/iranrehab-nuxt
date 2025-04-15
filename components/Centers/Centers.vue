@@ -90,7 +90,7 @@ const handleReset = () => {
 
 provide("cityFilter", cityFilter);
 
-const { data: centers, status } = await useFetch(`/api/center`, {
+const { data: centers, status } = await useFetch(`/api/centers`, {
   lazy: true,
   query: computed(() => {
     const query = {};
@@ -115,7 +115,7 @@ const { data: centers, status } = await useFetch(`/api/center`, {
 });
 
 const { data: centersCount } = await useFetch(
-  `/api/center?aggregate[count]=*`,
+  `/api/centers?aggregate[count]=*`,
   {
     lazy: true,
     query: computed(() => {
@@ -140,7 +140,6 @@ const { data: city, status: cityStatus } = await useFetch(`/api/city`, {
     const query = {};
     if (citySearchInput.value !== "") {
       query.filter = cityFilterQuery.value;
-      console.log(query);
       return query;
     }
   }),

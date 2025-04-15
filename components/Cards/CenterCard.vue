@@ -9,7 +9,17 @@
         >
           {{ center.title }}
         </h2>
-        <CenterDetails title="شهر" :subTitle="selectedCity.city || 'نامشخص'" />
+        <CenterDetails
+          title="شهر"
+          :subTitle="selectedCity.city || 'نامشخص'"
+          v-if="status == 'success'"
+        />
+        <CenterDetails
+          title="شهر"
+          :subTitle="'درحال بارگذاری'"
+          v-else="status == 'pending'"
+        />
+
         <CenterDetails title="نام مدیر" :subTitle="center.manager_name" />
         <CenterDetails title="عنوان مجوز" :subTitle="center.lisence" />
       </div>
@@ -56,7 +66,11 @@ const servicesTexts = computed(() => {
   }
 });
 
-const selectedCity = props.city.find((c) => {
-  return c.id === props.center.selected_city;
+const { data: selectedCity, status } = await useFetch(`/api/city`, {
+  lazy: true,
+  query: { filter: `{ "id" : { "_eq": "${props.center.selected_city}" } }` },
+  transform: ({ data }) => {
+    return { city: data[0].city };
+  },
 });
 </script>
