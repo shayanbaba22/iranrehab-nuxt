@@ -11,38 +11,26 @@ const route = useRoute();
 const { start, finish } = useLoadingIndicator();
 
 const slug = ref(route.params.slug);
-const center = ref({});
-const city = ref({});
-const settings = ref({});
-const status = ref("");
 
 start({ force: true });
 
-const { data: centerData, status: centerStatus } = await useFetch(
+const { data: center, status: status } = await useFetch(
   `/api/centers/${slug.value}`,
   {
     transform: ({ data }) => data[0] || null,
   }
 );
 
-center.value = centerData.value;
-status.value = centerStatus.value;
+const { data: city } = await useFetch("/api/city", {
+  query: {
+    filter: `{ "id": { "_eq": "${center.value.selected_city}" } }`,
+  },
+  transform: ({ data }) => ({ city: data[0]?.city || "نامشخص" }),
+});
 
-if (center.value?.selected_city) {
-  const { data: cityData } = await useFetch("/api/city", {
-    query: {
-      filter: `{ "id": { "_eq": "${center.value.selected_city}" } }`,
-    },
-    transform: ({ data }) => ({ city: data[0]?.city || "نامشخص" }),
-  });
-
-  city.value = cityData.value;
-}
-
-const { data: settingsData } = await useFetch("/api/settings", {
+const { data: settings } = await useFetch("/api/settings", {
   transform: ({ data }) => ({ site_name: data.site_name }),
 });
-settings.value = settingsData.value;
 
 useHead({
   title: `${center.value.title} - ${settings.value.site_name}`,
