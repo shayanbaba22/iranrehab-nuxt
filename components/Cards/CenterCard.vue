@@ -1,8 +1,5 @@
 <template>
-  <NuxtLink
-    :to="{ name: 'centers-slug', params: { slug: center.slug } }"
-    external
-  >
+  <NuxtLink :to="{ name: 'centers-slug', params: { slug: center.slug } }">
     <div
       class="flex flex-col p-4 bg-[#f5f5f5] border-2 border-[#eeeeee] rounded-3xl"
     >
