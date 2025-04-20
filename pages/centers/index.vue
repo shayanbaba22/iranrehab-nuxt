@@ -7,7 +7,7 @@
 import PageTitle from "@/components/Header/PageTitle.vue";
 import Centers from "@/components/Centers/Centers.vue";
 
-const { start } = useLoadingIndicator();
+const { start, finish } = useLoadingIndicator();
 start({ force: true });
 
 const breadcrumbArray = [
@@ -26,4 +26,6 @@ const { data: settings } = await useFetch("/api/settings", {
 useHead({
   title: `مراکز - ${settings.value.site_name}`,
 });
+
+finish();
 </script>
