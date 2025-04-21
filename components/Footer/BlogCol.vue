@@ -17,5 +17,9 @@
 </template>
 
 <script setup>
-const { data: posts } = await useFetch(`/api/post?limit=4`);
+const { data: posts } = await useFetch(`/api/post`, {
+  query: {
+    limit: 4,
+  },
+});
 </script>
