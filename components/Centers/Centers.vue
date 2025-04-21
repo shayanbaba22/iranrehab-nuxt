@@ -26,10 +26,10 @@
 
         <Pagination
           v-if="centersCount.count > limit"
-          :pages="pages"
-          :totalPages="totalPages"
+          :limit="limit"
+          :dataCount="centersCount"
           :currentPage="currentPage"
-          :handlePage="handlePage"
+          @update:currentPage="handlePage"
         />
       </div>
       <Loading
@@ -153,30 +153,8 @@ provide("citySearchInput", citySearchInput);
 provide("cityStatus", cityStatus);
 provide("city", city);
 
-const totalPages = computed(() => {
-  if (!centersCount.value || !centersCount.value.count) return 0;
-  return Math.ceil(centersCount.value.count / limit.value);
-});
-
-const pages = computed(() => {
-  if (totalPages.value === 0) return [];
-  const startPage = Math.max(1, currentPage.value - 1);
-  const endPage = Math.min(currentPage.value + 1, totalPages.value);
-  return Array.from(
-    { length: endPage - startPage + 1 },
-    (_, i) => startPage + i
-  );
-});
-
-const handlePage = (p) => {
-  currentPage.value = p;
-
-  setTimeout(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, 700);
+const handlePage = (page) => {
+  currentPage.value = page;
 };
 </script>
 
