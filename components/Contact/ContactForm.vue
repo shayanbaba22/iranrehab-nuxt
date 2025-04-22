@@ -67,8 +67,8 @@
 </template>
 
 <script setup>
-import { useToast } from "vue-toastification";
-const toast = useToast();
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 
 const allowOnlyNumbers = (e) => {
   const allowedKeys = ["Backspace", "ArrowLeft", "ArrowRight", "Tab", "Delete"];
@@ -78,24 +78,22 @@ const allowOnlyNumbers = (e) => {
 
 const handleSubmit = async (values) => {
   try {
-    const { error, status } = await useAsyncData("contact", () =>
-      $fetch("/api/form", {
-        method: "POST",
-        body: {
-          name: values.name,
-          phone: values.phone,
-          message: values.message,
-        },
-      })
-    );
+    const response = await $fetch("/api/for", {
+      method: "POST",
+      body: values,
+    });
 
-    if (status.value == "error") {
-      toast.error("ارسال فرم با خطا انجام شد مجددا تلاش کنید");
-    } else if (status.value == "success") {
-      toast.success("ارسال فرم با موفقیت انجام شد");
-    }
-  } catch (e) {
-    toast.error("خطایی رخ داده است", e);
+    toast("ارسال فرم با موفقیت انجام شد", {
+      theme: "colored",
+      type: "success",
+      transition: "slide",
+    });
+  } catch (error) {
+    toast(`ارسال فرم با خطا انجام شد، مجددا تلاش کنید - ${error.message}`, {
+      theme: "colored",
+      type: "error",
+      transition: "slide",
+    });
   }
 };
 </script>
