@@ -1,6 +1,6 @@
 <template>
   <section
-    class="flex flex-col items-center w-full z-50 mt-[-80px] p-2 relative"
+    class="flex flex-col items-center w-full z-50 p-2 relative"
   >
     <div
       class="w-full xl:max-w-[1280px] flex flex-col justify-between bg-white shadow-[0_6px_30px_10px_rgba(0,0,0,0.05)] rounded-3xl p-6 z-50"

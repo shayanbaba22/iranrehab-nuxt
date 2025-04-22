@@ -6,7 +6,7 @@
       :src="`${useRuntimeConfig().public.apiUrl}/assets/${
         props.img
       }?quality=100`"
-      class="rounded-3xl w-80 h-60"
+      class="rounded-3xl w-80 h-[200px] object-cover"
       :alt="props.title"
     ></NuxtImg>
     <div

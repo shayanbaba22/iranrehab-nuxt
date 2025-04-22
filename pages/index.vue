@@ -14,7 +14,7 @@ import News from "@/components/Home/News.vue";
 
 <template>
   <Hero />
-  <Services />
+  <Services class="mt-[-80px]" />
   <AboutSection />
   <GaitPlateSection />
   <FreeConsutationSection />
