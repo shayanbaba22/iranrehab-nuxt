@@ -1,7 +1,7 @@
 <template>
-  <div className="p-2.5">
+  <div class="p-2.5">
     <div
-      className="flex xl:w-[1280px] lg:w-[900px] flex-row flex-wrap mt-14 p-6 backdrop-blur-md bg-[#ffffff20] rounded-xl gap-2 justify-between"
+      class="flex xl:w-[1280px] lg:w-[900px] flex-row flex-wrap mt-14 p-6 backdrop-blur-md bg-[#ffffff20] rounded-xl gap-2 justify-between"
     >
       <ServiceSingle
         v-for="item in servicesData"

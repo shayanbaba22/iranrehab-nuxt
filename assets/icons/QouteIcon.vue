@@ -1,6 +1,6 @@
 <template>
   <svg
-    className="{classProps}"
+    class="{classProps}"
     width="79"
     height="63"
     viewBox="0 0 79 63"

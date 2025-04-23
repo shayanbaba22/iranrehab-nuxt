@@ -21,7 +21,7 @@
       pauseOnMouseEnter: true,
     }"
     :modules="[Pagination, Autoplay]"
-    className="flex flex-row w-full h-full mt-6 [&_*]:transition-all delay-150"
+    class="flex flex-row w-full h-full mt-6 [&_*]:transition-all delay-150"
   >
     <SwiperSlide
       v-for="service in MainServicesData"

@@ -5,7 +5,7 @@
     height="24"
     viewBox="0 0 24 24"
     fill="none"
-    className="translate-y-[10px] translate-x-[-6px]"
+    class="translate-y-[10px] translate-x-[-6px]"
   >
     <path
       d="M9.56995 18.07L3.49995 12L9.56995 5.93"
