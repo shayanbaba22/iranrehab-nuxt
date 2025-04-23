@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
-      apiUrl: process.env.API_URL,
+      apiUrl: "https://iranrehab-panel.liara.run",
     },
   },
   formkit: {
