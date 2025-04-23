@@ -135,4 +135,18 @@ input:-webkit-autofill {
 input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 50px white inset;
 }
+
+div[data-testid="toast-content"] {
+  font-size: 14px;
+}
+
+@media screen and (max-width: 640px) {
+  div[data-testid="toast-content"] {
+    font-size: 12px;
+  }
+
+  .Toastify__toast-theme--colored {
+    width: 250px;
+  }
+}
 </style>
