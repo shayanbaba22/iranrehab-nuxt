@@ -78,7 +78,7 @@ const allowOnlyNumbers = (e) => {
 
 const handleSubmit = async (values) => {
   try {
-    const response = await $fetch("/api/for", {
+    const response = await $fetch("/api/form", {
       method: "POST",
       body: values,
     });

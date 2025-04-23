@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/fonts",
     "@formkit/nuxt",
+    "@nuxt/scripts",
   ],
   runtimeConfig: {
     public: {
