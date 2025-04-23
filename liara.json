@@ -1,8 +1,5 @@
 {
-    "app":"iranrehab-nuxt"
-    "port":3000
-    "build":{
-    "location":"iran"
-    }
-    "disks":[]
-    }
+    "app": "iranrehab-nuxt"
+    "port": 3000
+    
+}
