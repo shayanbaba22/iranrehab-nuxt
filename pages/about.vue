@@ -25,5 +25,17 @@ const breadcrumbArray = computed(() => [
   { id: 2, title: "درباره ما", href: null },
 ]);
 
+const { data: settings } = await useFetch("/api/settings", {
+  transform: ({ data }) => {
+    return {
+      site_name: data.site_name,
+    };
+  },
+});
+
+useHead({
+  title: `درباره ما - ${settings.value.site_name}`,
+});
+
 finish();
 </script>
