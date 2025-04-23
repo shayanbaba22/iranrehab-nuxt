@@ -1,7 +1,7 @@
 <template>
-  <section class="flex flex-col items-center w-full z-50 mt-[-80px] p-2">
+  <section class="flex flex-col items-center w-full z-10 mt-[-80px] p-2">
     <div
-      class="w-full xl:max-w-[1280px] flex flex-row lg:flex-row justify-start gap-1 flex-wrap bg-white shadow-[0_6px_30px_10px_rgba(0,0,0,0.05)] rounded-3xl p-6 z-50 items-start"
+      class="w-full xl:max-w-[1280px] flex flex-row lg:flex-row justify-start gap-1 flex-wrap bg-white shadow-[0_6px_30px_10px_rgba(0,0,0,0.05)] rounded-3xl p-6 z-10 items-start"
     >
       <div
         class="w-full flex flex-row lg:flex-row justify-start gap-1 flex-wrap"
