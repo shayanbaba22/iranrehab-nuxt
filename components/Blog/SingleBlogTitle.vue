@@ -5,7 +5,7 @@
     <NuxtImg
       :src="`${useRuntimeConfig().public.apiUrl}/assets/${
         props.img
-      }?quality=100`"
+      }?quality=80&format=webp&width=320`"
       class="rounded-3xl w-80 h-[200px] object-cover"
       :alt="props.title"
       :width="320"
