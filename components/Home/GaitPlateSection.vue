@@ -8,14 +8,17 @@
       <div
         class="flex flex-col justify-center items-center lg:w-[calc(40%-20px)] mt-[-10px] lg:mb-[-60px]"
       >
-        <NuxtImg alt="گیت پلیت" :src="gaitplate" class="w-full"></NuxtImg>
+        <NuxtImg
+          alt="گیت پلیت"
+          :src="gaitplate"
+          class="w-full"
+          format="webp"
+        ></NuxtImg>
       </div>
       <div
         class="lg:w-[calc(60%-20px)] flex flex-col gap-5 p-2.5 justify-center"
       >
-        <p class="text-3xl text-white font-bold">
-          مرکز جامع توانبخشی ایران
-        </p>
+        <p class="text-3xl text-white font-bold">مرکز جامع توانبخشی ایران</p>
         <p class="text-lg text-white">
           گیت پلیت ابداعی کارآمد در کمک برای تعادل و راه رفتن کودکان فلج مغزی
         </p>
@@ -26,9 +29,7 @@
           کمک شایانی نموده و کارایی عملکردی خود را در موارد متعدد به اثبات
           رسانده است.
         </p>
-        <div
-          class="flex flex-col items-center lg:flex-row gap-4 lg:gap-0 mb-5"
-        >
+        <div class="flex flex-col items-center lg:flex-row gap-4 lg:gap-0 mb-5">
           <BtnPrimary text="مطالعه بیشتر" url="#" class="" />
         </div>
       </div>

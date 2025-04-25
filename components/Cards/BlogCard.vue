@@ -11,6 +11,8 @@
             }/assets/${img}?quality=100`"
             class="rounded-[40px] w-[270px] h-[200px]"
             :alt="title"
+            :width="270"
+            format="webp"
           ></NuxtImg>
         </NuxtLink>
       </div>

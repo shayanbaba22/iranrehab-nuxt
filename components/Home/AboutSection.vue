@@ -39,6 +39,7 @@
           alt="درباره مرکز جامع توانبخشی ایران"
           :src="karadarmaniAbout"
           class="w-full object-cover"
+          format="webp"
         ></NuxtImg>
       </div>
     </div>

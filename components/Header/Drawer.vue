@@ -14,6 +14,8 @@ const toggleMenu = inject("toggleMenuProvider");
       src="/logo.svg"
       alt="مرکز جامع توانبخشی ایران"
       class="order-2 lg:order-1 mb-6 w-[100px]"
+      :width="100"
+      format="webp"
     />
     <NavigationItems class="flex lg:hidden" />
     <div

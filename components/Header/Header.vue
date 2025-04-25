@@ -32,6 +32,8 @@ const { data: settings } = await useFetch(`/api/settings`, {
           }?quality=100`"
           :alt="settings.site_name"
           class="order-2 lg:order-1 w-[100px] sm:w-[130px]"
+          :width="130"
+          format="webp"
         />
       </NuxtLink>
       <NavigationItems class="hidden lg:grow lg:flex" />

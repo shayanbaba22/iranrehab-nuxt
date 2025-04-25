@@ -6,6 +6,7 @@
       :src="LogoBg"
       class="absolute bottom-5 right-5"
       alt="لوگو"
+      format="webp"
     ></NuxtImg>
     <p class="text-[86px] text-white font-bold">404</p>
     <p class="text-2xl text-white mb-5">متاسفانه صفحه ی مورد نظر پیدا نشد !!</p>

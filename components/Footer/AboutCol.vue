@@ -1,7 +1,11 @@
 <template>
   <div class="flex flex-col w-full lg:w-[calc(33%-10px)]">
     <NuxtLink to="/">
-      <NuxtImg alt="مرکز جامع توانبخشی ایران" :src="LogoFooter"></NuxtImg>
+      <NuxtImg
+        alt="مرکز جامع توانبخشی ایران"
+        :src="LogoFooter"
+        format="webp"
+      ></NuxtImg>
     </NuxtLink>
     <p class="text-justify text-sm leading-7 text-white mt-5">
       مرکز جامع توانبخشی ایران در سال ۱۳۸۳ توسط گروهی از پزشکان فوق تخصص مغز و

@@ -5,6 +5,8 @@
     <NuxtImg
       src="/404LogoBg.svg"
       class="absolute bottom-5 right-5"
+      :width="200"
+      format="webp"
       alt="لوگو"
     ></NuxtImg>
     <p class="text-[86px] text-white font-bold">{{ error.statusCode }}</p>

@@ -8,6 +8,8 @@
       }?quality=100`"
       class="rounded-3xl w-80 h-[200px] object-cover"
       :alt="props.title"
+      :width="320"
+      format="webp"
     ></NuxtImg>
     <div
       class="flex flex-col gap-4 justify-center items-center lg:items-start [&_a.last-pages]:text-textsc [&_span.seperator]:text-textsc [&_p.current-page]:text-textpr"

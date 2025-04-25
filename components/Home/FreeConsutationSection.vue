@@ -26,7 +26,12 @@
       <div
         class="flex flex-col justify-center items-center lg:w-[calc(45%-20px)] mb-[-10px] lg:mt-[-60px] mt-10"
       >
-        <NuxtImg alt="مشاوره رایگان" :src="moshavere" class="w-full"></NuxtImg>
+        <NuxtImg
+          alt="مشاوره رایگان"
+          :src="moshavere"
+          class="w-full"
+          format="webp"
+        ></NuxtImg>
       </div>
     </div>
   </section>
