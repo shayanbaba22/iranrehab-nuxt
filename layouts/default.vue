@@ -31,6 +31,26 @@ useHead({
         settings.value.favicon
       }`,
     },
+    {
+      rel: "preload",
+      as: "video",
+      href: "/hero.webm",
+      type: "video/webm",
+    },
+    {
+      rel: "preload",
+      as: "font",
+      href: "/fonts/IRANSansXFaNum-Regular.woff2",
+      type: "font/woff2",
+      crossorigin: "anonymous",
+    },
+    {
+      rel: "preload",
+      as: "font",
+      href: "/fonts/IRANSansXFaNum-Bold.woff2",
+      type: "font/woff2",
+      crossorigin: "anonymous",
+    },
   ],
 });
 </script>
