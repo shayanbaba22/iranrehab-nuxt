@@ -8,7 +8,7 @@
           <NuxtImg
             :src="`${
               useRuntimeConfig().public.apiUrl
-            }/assets/${img}?quality=100`"
+            }/assets/${img}?quality=80&format=webp&width=270`"
             class="rounded-[40px] w-[270px] h-[200px]"
             :alt="title"
             :width="270"

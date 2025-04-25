@@ -40,6 +40,7 @@
           :src="karadarmaniAbout"
           class="w-full object-cover"
           format="webp"
+          :width="470"
         ></NuxtImg>
       </div>
     </div>

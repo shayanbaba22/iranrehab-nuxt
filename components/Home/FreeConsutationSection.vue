@@ -31,6 +31,8 @@
           :src="moshavere"
           class="w-full"
           format="webp"
+          :width="550"
+          :height="480"
         ></NuxtImg>
       </div>
     </div>

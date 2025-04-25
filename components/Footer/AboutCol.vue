@@ -5,6 +5,7 @@
         alt="مرکز جامع توانبخشی ایران"
         :src="LogoFooter"
         format="webp"
+        :width="120"
       ></NuxtImg>
     </NuxtLink>
     <p class="text-justify text-sm leading-7 text-white mt-5">

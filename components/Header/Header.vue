@@ -29,7 +29,7 @@ const { data: settings } = await useFetch(`/api/settings`, {
         <NuxtImg
           :src="`${useRuntimeConfig().public.apiUrl}/assets/${
             settings.logo
-          }?quality=100`"
+          }?quality=80&format=webp&width=130`"
           :alt="settings.site_name"
           class="order-2 lg:order-1 w-[100px] sm:w-[130px]"
           :width="130"

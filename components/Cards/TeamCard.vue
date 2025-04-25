@@ -3,7 +3,14 @@
     <div
       class="w-full h-[400px] border-[12px] border-white rounded-[34px] shadow-lg z-1 overflow-hidden"
     >
-      <NuxtImg :src="img" :alt="name" class="relative" format="webp"></NuxtImg>
+      <NuxtImg
+        :src="img"
+        :alt="name"
+        class="relative"
+        format="webp"
+        :width="295"
+        :height="400"
+      ></NuxtImg>
       <div
         class="absolute top-0 right-0 left-0 m-auto w-[100%] h-[100%] bg-gradient-to-b from-transparent to-primary-200 rounded-[34px]"
       ></div>

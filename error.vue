@@ -18,16 +18,16 @@
       {{ error.message }}
     </p>
     <BtnPrimary text="بازگشت به خانه" url="/" />
+    
   </section>
 </template>
 
 <script setup>
 import BtnPrimary from "@/components/Buttons/BtnPrimary.vue";
 
-defineProps(["error"]);
-
 const { start, finish } = useLoadingIndicator();
 start({ force: true });
+defineProps(["error"]);
 
 const { data: settings } = await useFetch("/api/settings", {
   transform: ({ data }) => {

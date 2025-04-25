@@ -13,6 +13,8 @@
           :src="gaitplate"
           class="w-full"
           format="webp"
+          :width="485"
+          :height="545"
         ></NuxtImg>
       </div>
       <div

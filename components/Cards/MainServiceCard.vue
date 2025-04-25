@@ -7,6 +7,7 @@
         :src="img"
         :alt="title"
         class="h-full w-full object-cover"
+        :width="295"
         format="webp"
       ></NuxtImg>
     </div>
