@@ -15,6 +15,7 @@
           format="webp"
           :width="485"
           :height="545"
+          loading="lazy"
         ></NuxtImg>
       </div>
       <div

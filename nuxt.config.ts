@@ -6,9 +6,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "nuxt-swiper",
     "@nuxt/image",
-    "@nuxt/fonts",
-    "@formkit/nuxt",
-    "@nuxt/scripts",
+    "@formkit/nuxt"
   ],
   runtimeConfig: {
     public: {

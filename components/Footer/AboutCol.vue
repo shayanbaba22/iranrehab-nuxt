@@ -6,6 +6,7 @@
         :src="LogoFooter"
         format="webp"
         :width="120"
+        loading="lazy"
       ></NuxtImg>
     </NuxtLink>
     <p class="text-justify text-sm leading-7 text-white mt-5">

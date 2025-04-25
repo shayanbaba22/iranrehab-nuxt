@@ -13,6 +13,7 @@
             :alt="title"
             :width="270"
             format="webp"
+            loading="lazy"
           ></NuxtImg>
         </NuxtLink>
       </div>

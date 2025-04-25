@@ -41,6 +41,7 @@
           class="w-full object-cover"
           format="webp"
           :width="470"
+          loading="lazy"
         ></NuxtImg>
       </div>
     </div>

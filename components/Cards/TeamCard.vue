@@ -10,6 +10,7 @@
         format="webp"
         :width="295"
         :height="400"
+        loading="lazy"
       ></NuxtImg>
       <div
         class="absolute top-0 right-0 left-0 m-auto w-[100%] h-[100%] bg-gradient-to-b from-transparent to-primary-200 rounded-[34px]"

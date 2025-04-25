@@ -9,6 +9,8 @@
         class="h-full w-full object-cover"
         :width="295"
         format="webp"
+        preload
+        loading="lazy"
       ></NuxtImg>
     </div>
     <h2

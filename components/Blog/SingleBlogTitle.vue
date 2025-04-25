@@ -10,6 +10,7 @@
       :alt="props.title"
       :width="320"
       format="webp"
+      preload
     ></NuxtImg>
     <div
       class="flex flex-col gap-4 justify-center items-center lg:items-start [&_a.last-pages]:text-textsc [&_span.seperator]:text-textsc [&_p.current-page]:text-textpr"

@@ -16,6 +16,7 @@ const toggleMenu = inject("toggleMenuProvider");
       class="order-2 lg:order-1 mb-6 w-[100px]"
       :width="100"
       format="webp"
+      loading="lazy"
     />
     <NavigationItems class="flex lg:hidden" />
     <div
