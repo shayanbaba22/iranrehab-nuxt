@@ -33,12 +33,6 @@ useHead({
     },
     {
       rel: "preload",
-      as: "video",
-      href: "/hero.webm",
-      type: "video/webm",
-    },
-    {
-      rel: "preload",
       as: "font",
       href: "/fonts/IRANSansXFaNum-Regular.woff2",
       type: "font/woff2",

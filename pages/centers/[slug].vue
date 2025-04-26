@@ -34,6 +34,13 @@ const { data: settings } = await useFetch("/api/settings", {
 
 useHead({
   title: `${center.value.title} - ${settings.value.site_name}`,
+  link: [
+    {
+      rel: "preload",
+      href: "/PageTitleBg.webp",
+      type: "image/webp",
+    },
+  ],
 });
 
 finish();

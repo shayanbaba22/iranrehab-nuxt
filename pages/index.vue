@@ -8,8 +8,21 @@ import Team from "@/components/Home/Team.vue";
 import Reviews from "@/components/Home/Reviews.vue";
 import News from "@/components/Home/News.vue";
 
-const { start } = useLoadingIndicator();
+const { start, finish } = useLoadingIndicator();
 start({ force: true });
+
+useHead({
+  link: [
+    {
+      rel: "preload",
+      as: "video",
+      href: "/hero.webm",
+      type: "video/webm",
+    },
+  ],
+});
+
+finish();
 </script>
 
 <template>

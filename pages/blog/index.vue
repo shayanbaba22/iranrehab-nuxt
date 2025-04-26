@@ -1,6 +1,6 @@
 <template>
-    <PageTitle title="بلاگ" :breadcrumbArray="breadcrumbArray" />
-    <Blog />
+  <PageTitle title="بلاگ" :breadcrumbArray="breadcrumbArray" />
+  <Blog />
 </template>
 
 <script setup>
@@ -25,8 +25,14 @@ const { data: settings } = await useFetch("/api/settings", {
 
 useHead({
   title: `بلاگ - ${settings.value.site_name}`,
+  link: [
+    {
+      rel: "preload",
+      href: "/PageTitleBg.webp",
+      type: "image/webp",
+    },
+  ],
 });
 
 finish();
 </script>
-
