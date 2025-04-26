@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "nuxt-swiper",
     "@nuxt/image",
     "@formkit/nuxt",
+    "nuxt-delay-hydration",
   ],
   runtimeConfig: {
     public: {
@@ -21,5 +22,8 @@ export default defineNuxtConfig({
     compressPublicAssets: {
       brotli: true,
     },
+  },
+  delayHydration: {
+    mode: "mount",
   },
 });
