@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "nuxt-swiper",
     "@nuxt/image",
-    "@formkit/nuxt"
+    "@formkit/nuxt",
   ],
   runtimeConfig: {
     public: {
@@ -16,5 +16,10 @@ export default defineNuxtConfig({
   formkit: {
     autoImport: true,
     configFile: "./formkit.config.js",
+  },
+  nitro: {
+    compressPublicAssets: {
+      brotli: true,
+    },
   },
 });
