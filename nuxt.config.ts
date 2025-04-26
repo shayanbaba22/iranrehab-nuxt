@@ -24,6 +24,6 @@ export default defineNuxtConfig({
     },
   },
   delayHydration: {
-    mode: "mount",
+    mode: "init",
   },
 });
