@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@formkit/nuxt",
     "nuxt-delay-hydration",
+    "nuxt-precompress",
   ],
   runtimeConfig: {
     public: {
@@ -25,5 +26,10 @@ export default defineNuxtConfig({
   },
   delayHydration: {
     mode: "init",
+  },
+  nuxtPrecompress: {
+    enabled: true,
+    report: false,
+    test: /\.(js|css|html|txt|xml|svg)$/,
   },
 });
