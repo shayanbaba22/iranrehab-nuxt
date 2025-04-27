@@ -8,7 +8,6 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@formkit/nuxt",
     "nuxt-delay-hydration",
-    "nuxt-precompress",
   ],
   runtimeConfig: {
     public: {
@@ -19,17 +18,12 @@ export default defineNuxtConfig({
     autoImport: true,
     configFile: "./formkit.config.js",
   },
+  delayHydration: {
+    mode: "init",
+  },
   nitro: {
     compressPublicAssets: {
       brotli: true,
     },
-  },
-  delayHydration: {
-    mode: "init",
-  },
-  nuxtPrecompress: {
-    enabled: true,
-    report: false,
-    test: /\.(js|css|html|txt|xml|svg)$/,
   },
 });
